@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Neo Pokedex // Battle Arena</title>
+  <link rel="stylesheet" href="styles.css" />
+  <!-- Axios CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="scan-overlay"></div>
+  <div class="grid-bg"></div>
+
+  <header class="app-header">
+    <div class="logo-mark">// NEO-POKEDEX</div>
+    <h1>POKÉDEX BATTLE ARENA</h1>
+    <p class="subtitle">
+      Sci-Fi Pokedex interface + arcade battle system. Choose your Pokémon, then initiate battle.
+    </p>
+  </header>
+
+  <main class="layout">
+    <!-- LEFT: Battle Arena -->
+    <section class="battle-panel glass">
+      <h2 class="panel-title">BATTLE ARENA</h2>
+
+      <div class="battle-slots">
+        <div class="battle-slot" id="leftSlot">
+          <div class="slot-label">PLAYER 1</div>
+          <div class="slot-body">
+            <div class="slot-image" id="leftSprite">
+              <span class="placeholder-text">SELECT FROM GRID</span>
+            </div>
+            <div class="slot-info">
+              <h3 id="leftName" class="slot-name">No Pokémon Selected</h3>
+              <p id="leftTypes" class="slot-types"></p>
+              <p id="leftStats" class="slot-stats"></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="battle-slot" id="rightSlot">
+          <div class="slot-label">PLAYER 2</div>
+          <div class="slot-body">
+            <div class="slot-image" id="rightSprite">
+              <span class="placeholder-text">SELECT FROM GRID</span>
+            </div>
+            <div class="slot-info">
+              <h3 id="rightName" class="slot-name">No Pokémon Selected</h3>
+              <p id="rightTypes" class="slot-types"></p>
+              <p id="rightStats" class="slot-stats"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="battle-controls">
+        <button id="startBattleBtn" class="primary-btn">INITIATE BATTLE</button>
+        <button id="clearSelectionBtn" class="ghost-btn">CLEAR SELECTION</button>
+      </div>
+
+      <div id="battleResult" class="battle-result"></div>
+
+      <div class="battle-log-wrapper">
+        <div class="battle-log-header">BATTLE LOG //</div>
+        <div id="battleLog" class="battle-log"></div>
+      </div>
+    </section>
+
+    <!-- RIGHT: Pokedex / Cards -->
+    <section class="pokedex-panel">
+      <div class="controls glass">
+        <div class="control-group">
+          <label for="searchInput">SEARCH</label>
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Type name e.g. pikachu..."
+          />
+        </div>
+
+        <div class="control-group">
+          <label for="typeFilter">FILTER BY TYPE</label>
+          <select id="typeFilter">
+            <option value="">All Types</option>
+          </select>
+        </div>
+
+        <div class="control-group small">
+          <label for="limitSelect">POKÉMON COUNT</label>
+          <select id="limitSelect">
+            <option value="30">30</option>
+            <option value="60" selected>60</option>
+            <option value="90">90</option>
+            <option value="151">151</option>
+          </select>
+        </div>
+      </div>
+
+      <section class="cards-panel glass">
+        <div class="cards-header">
+          <h2 class="panel-title">POKÉDEX DATABASE</h2>
+          <span id="pokemonCount" class="pokemon-count">0 Loaded</span>
+        </div>
+        <div id="pokemonGrid" class="pokemon-grid">
+          <!-- Cards injected by JS -->
+        </div>
+        <div id="loader" class="loader hidden">
+          <div class="loader-ring"></div>
+          <span>Syncing with PokeAPI...</span>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <span>// SYSTEM ONLINE • DATA FROM PokeAPI</span>
+    <span>Tip: Click a card to assign it to a battle slot.</span>
+  </footer>
+</body>
+</html>
